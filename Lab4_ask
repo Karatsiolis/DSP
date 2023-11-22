@@ -1,0 +1,40 @@
+%prepei na ftiaksw to P(n)=x(n+2)*[u(n+2)-u(n-2)] me sigshift gia th
+%metatopish messa sta u, sigadd gia thn prosthesi/afairesh twn u kai sigmult gia
+%poll/smo tou x me to apotelesma twn u
+
+n = -3:10;
+
+x = exp(-n);
+u1=n>=0;
+u2=n>=0;
+
+[X,nX] = Sigshift(x,n,-2);
+
+[U1,n1] = Sigshift(u1,n,2);
+[U2,n2] = Sigshift(u2,n,-2);
+[U,nU]  = Sigadd(n1,U1,n2,U2);
+
+[P,nP] = Sigmult(nX,X,nU,U);
+
+
+subplot(4,1,1);
+stem(nX,X);
+title('X(n)');
+grid on;
+hold on;
+subplot(4,1,2);
+stem(n,x);
+grid on;
+hold on;
+
+subplot(4,1,3);
+stem(nU,U);
+title('U(n)');
+grid on;
+hold on;
+
+subplot(4,1,4);
+stem(nP,P);
+title('P(n)');
+grid on;
+hold on;
